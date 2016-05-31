@@ -23,6 +23,10 @@
         <fabric8.iconRef>icons/spring-boot</fabric8.iconRef>
         <fabric8.label.project>hash-cruncher</fabric8.label.project>
         <fabric8.label.version>${project.version}</fabric8.label.version>
+        <fabric8.readinessProbe.httpGet.path>/health</fabric8.readinessProbe.httpGet.path>
+        <fabric8.readinessProbe.httpGet.port>8080</fabric8.readinessProbe.httpGet.port>
+        <fabric8.readinessProbe.initialDelaySeconds>5</fabric8.readinessProbe.initialDelaySeconds>
+        <fabric8.readinessProbe.timeoutSeconds>30</fabric8.readinessProbe.timeoutSeconds>
         <fabric8.service.containerPort>8080</fabric8.service.containerPort>
         <fabric8.service.name>hash</fabric8.service.name>
         <fabric8.service.port>80</fabric8.service.port>
@@ -58,7 +62,39 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-actuator</artifactId>
+    </dependency>
     </dependencies>
+
+    <profiles>
+    <profile>
+      <id>f8-build</id>
+      <build>
+        <defaultGoal>clean install docker:build fabric8:json</defaultGoal>
+      </build>
+    </profile>
+    <profile>
+      <id>f8-deploy</id>
+      <build>
+        <defaultGoal>clean install docker:build docker:push fabric8:json fabric8:apply</defaultGoal>
+      </build>
+      <properties>
+        <fabric8.recreate>true</fabric8.recreate>
+        <fabric8.imagePullPolicySnapshot>Always</fabric8.imagePullPolicySnapshot>
+      </properties>
+    </profile>
+    <profile>
+      <id>f8-local-deploy</id>
+      <build>
+        <defaultGoal>clean install docker:build fabric8:json fabric8:apply</defaultGoal>
+      </build>
+      <properties>
+        <fabric8.recreate>true</fabric8.recreate>
+      </properties>
+    </profile>
+  </profiles>
 
 <build>
     <plugins>
