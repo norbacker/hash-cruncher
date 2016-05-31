@@ -17,7 +17,6 @@
         <docker.assemblyDescriptorRef>artifact</docker.assemblyDescriptorRef>
         <docker.from>docker.io/fabric8/java-jboss-openjdk8-jdk:1.0.10</docker.from>
         <docker.image>fabric8/${project.artifactId}:${project.version}</docker.image>
-        <docker.image.prefix>ffcg-pub</docker.image.prefix>
         <docker.port.container.http>8080</docker.port.container.http>
         <docker.port.container.jolokia>8778</docker.port.container.jolokia>
         <fabric8.iconRef>icons/spring-boot</fabric8.iconRef>
@@ -98,23 +97,7 @@
 
 <build>
     <plugins>
-        <plugin>
-            <groupId>com.spotify</groupId>
-            <artifactId>docker-maven-plugin</artifactId>
-            <version>0.2.3</version>
-            <configuration>
-                <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
-                <dockerDirectory>src/main/docker</dockerDirectory>
-                <resources>
-                    <resource>
-                        <targetPath>/</targetPath>
-                        <directory>${project.build.directory}</directory>
-                        <include>${project.build.finalName}.jar</include>
-                    </resource>
-                </resources>
-            </configuration>
-        </plugin>
-            <plugin>
+              <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
