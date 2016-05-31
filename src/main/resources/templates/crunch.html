@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Hash cruncher</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+		.box {
+		  display: block;
+		  width: 75%;
+		  height: 50%;
+		  background-color: #73AD21;
+		  border-radius: 25px;
+		  margin: 0 auto;
+		  padding: 3%;
+		}
+
+		.box p {
+		  font-family: 'Helvetica', Arial, sans-serif;
+		  font-size: 2em;
+		  color: white;
+		  text-align: center;
+		}
+    </style>
+</head>
+<body>
+	<div class="box">
+    	<p th:text="${result}" />
+    </div>
+    <br />
+	<div class="box" th:if="${verbose}">
+	    <p th:text="'Hash: ' + ${hash}" />
+    	<p th:text="'Time: ' + ${time} + ' ms'" />
+    </div>
+</body>
+</html>

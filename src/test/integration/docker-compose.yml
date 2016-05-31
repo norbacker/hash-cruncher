@@ -1,0 +1,6 @@
+hash:
+  image: dushess/hash
+integration:
+  image: dushess/integration
+  links:
+    - hash
