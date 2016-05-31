@@ -12,3 +12,4 @@ environments:
   Testing: "fabric-testing"
   Staging: "fabric-staging"
   Production: "fabric-production"
+useLocalFlow: true
