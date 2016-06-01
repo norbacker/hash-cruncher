@@ -2,7 +2,7 @@
 buildName: "hash-cruncher-pub"
 codeReview: false
 links:
-  Git: "https://github.com/norbacker/hash-cruncher.git"
+  Git: "https://github.com/norbacker/hash-cruncher"
   Job: "http://jenkins.fabric.rhel-cdk.10.1.2.2.xip.io/job/hash-cruncher-pub"
   Production: "http://172.30.143.146:80/kubernetes/pods?namespace=fabric-production"
   Staging: "http://172.30.143.146:80/kubernetes/pods?namespace=fabric-staging"
